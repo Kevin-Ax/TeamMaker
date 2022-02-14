@@ -12,19 +12,28 @@ unsigned seed = time(0);
 void make_teams(std::vector<std::string> list,int quantPeaple,int quantTeams){
     //organização de times
     std::vector<std::vector<std::string>> teams;
-    std::sort(list.begin(),list.end());
     while(!list.empty()){
-        srand(seed);
-        int pos=rand()%list.size();
         for(int i=0;i<quantTeams;i++){
-            if(teams[i].size()<quantPeaple){
+            srand(seed);
+            int pos=rand() % list.size();
+            if(teams[i].size()<=quantPeaple){
                 teams[i].push_back(list[pos]);
-                std::vector<std::string>::iterator it;
-                *it=list[pos];
-                list.erase(it);
+                //está em loop;
+                //consertar
+            }
+        } 
+    }
+    std::ofstream out;
+    while(!list.empty()){
+        int i=0;
+        out<<"Time "<<i<<std::endl;
+        for(;i<quantTeams;i++){
+            for(int j=0;j<quantPeaple;j++){
+                out<<teams[i][j]<<std::endl;;
             }
         }
     }
+
 }
 
 
